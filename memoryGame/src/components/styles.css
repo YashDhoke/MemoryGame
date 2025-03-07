@@ -1,0 +1,15 @@
+.box {
+  height: 150px;
+  width: 150px;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
+  font-weight: 600;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 150px);
+}
