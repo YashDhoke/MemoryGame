@@ -13,31 +13,53 @@ const Grid = () => {
     return array;
   };
 
-  const [cards, setCards] = useState([]);
-
-  const [flipped, setFlipped] = useState([]);
+  const [cards, setCards] = useState([]); /// this stores all the cards , according to the shuffled index
+  const [matchedCards, setMatchedCards] = useState([]); // this stores all the matched cards and prevents them from flipping again
+  const [flipped, setFlipped] = useState([]); // this stores the currently flipped cards ,
 
   useEffect(() => {
     setCards(shuffleArray(initialCards));
   }, []);
 
   const handleClick = (index) => {
-    if (flipped.includes(index)) return;
-    if (flipped.length === 2) return;
+    if (
+      matchedCards.includes(index) ||
+      flipped.includes(index) ||
+      flipped.length === 2
+    )
+      return;
 
-    setFlipped([...flipped, index]);
+    const newFlipped = [...flipped, index];
+    setFlipped(newFlipped);
+
+    if (newFlipped.length === 2) {
+      const [firstIndex, secondIndex] = newFlipped;
+      if (cards[firstIndex] === cards[secondIndex]) {
+        setMatchedCards([...matchedCards, firstIndex, secondIndex]);
+        setFlipped([]);
+      } else {
+        setTimeout(() => setFlipped([]), 1000);
+      }
+    }
   };
 
-  console.log(flipped);
-
   return (
-    <div className="grid">
-      {cards.map((item, index) => (
-        <div className="box" key={index} onClick={() => handleClick(index)}>
-          {flipped.includes(index) ? item : <FaQuestion />}
-        </div>
-      ))}
-    </div>
+    <>
+      <div className="grid">
+        {cards.map((item, index) => (
+          <div className="box" key={index} onClick={() => handleClick(index)}>
+            {flipped.includes(index) || matchedCards.includes(index) ? (
+              item
+            ) : (
+              <FaQuestion />
+            )}
+          </div>
+        ))}
+      </div>
+      {matchedCards.length === 16 && (
+        <h1 className="end">CONGRATULATIONS!!!</h1>
+      )}
+    </>
   );
 };
 

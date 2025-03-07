@@ -13,3 +13,9 @@
   display: grid;
   grid-template-columns: repeat(4, 150px);
 }
+
+.end {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
