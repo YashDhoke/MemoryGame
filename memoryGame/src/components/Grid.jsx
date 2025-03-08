@@ -51,7 +51,7 @@ const Grid = () => {
             {flipped.includes(index) || matchedCards.includes(index) ? (
               item
             ) : (
-              <MdQuestionMark />
+              <MdQuestionMark className="icon-1" />
             )}
           </div>
         ))}
