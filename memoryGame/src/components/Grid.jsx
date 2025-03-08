@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
-import { FaQuestion } from "react-icons/fa";
+import { MdQuestionMark } from "react-icons/md";
 
 const Grid = () => {
   const initialCards = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
@@ -51,7 +51,7 @@ const Grid = () => {
             {flipped.includes(index) || matchedCards.includes(index) ? (
               item
             ) : (
-              <FaQuestion />
+              <MdQuestionMark />
             )}
           </div>
         ))}
