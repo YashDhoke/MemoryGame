@@ -56,9 +56,7 @@ const Grid = () => {
           </div>
         ))}
       </div>
-      {matchedCards.length === 16 && (
-        <h1 className="end">CONGRATULATIONS!!!</h1>
-      )}
+      {matchedCards.length === 16 && <h1 className="end">CONGRATULATIONS!</h1>}
     </>
   );
 };
