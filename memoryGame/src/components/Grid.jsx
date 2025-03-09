@@ -43,8 +43,16 @@ const Grid = () => {
     }
   };
 
+  const handleReset = () => {
+    setFlipped([]);
+    setMatchedCards([]);
+  };
+
   return (
     <>
+      <button className="btn" onClick={handleReset}>
+        RESET
+      </button>
       <div className="grid">
         {cards.map((item, index) => (
           <div className="box" key={index} onClick={() => handleClick(index)}>
