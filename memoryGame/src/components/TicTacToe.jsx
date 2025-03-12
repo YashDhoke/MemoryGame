@@ -41,20 +41,27 @@ const TicTacToe = () => {
     }
   };
 
-  console.log(game);
+  const handleUndo = () => {
+    setGame(Array(9).fill(""));
+  };
 
   return (
-    <div className="grid-2">
-      {game.map((item, index) => (
-        <div className="box-2" key={index} onClick={() => handleClick(index)}>
-          {item === 1 ? (
-            <ImCross className="icon-3" />
-          ) : item === 0 ? (
-            <FaRegCircle className="icon-2" />
-          ) : null}
-        </div>
-      ))}
-    </div>
+    <>
+      <button className="btn" onClick={handleUndo}>
+        UNDO
+      </button>
+      <div className="grid-2">
+        {game.map((item, index) => (
+          <div className="box-2" key={index} onClick={() => handleClick(index)}>
+            {item === 1 ? (
+              <ImCross className="icon-3" />
+            ) : item === 0 ? (
+              <FaRegCircle className="icon-2" />
+            ) : null}
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 
