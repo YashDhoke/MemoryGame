@@ -6,6 +6,7 @@ import { FaRegCircle } from "react-icons/fa";
 const TicTacToe = () => {
   const [game, setGame] = useState(Array(9).fill(""));
   const [turn, setTurn] = useState(1);
+  const [winner, setWinner] = useState("");
 
   const handleClick = (index) => {
     const newArr = [...game];
@@ -35,7 +36,7 @@ const TicTacToe = () => {
     for (let combination of winningCombinations) {
       const [a, b, c] = combination;
       if (game[a] !== "" && game[a] === game[b] && game[a] === game[c]) {
-        console.log(`Player ${game[a] === 1 ? "1 (X)" : "0 (O)"} Wins`);
+        setWinner(turn === 1 ? 2 : 1);
         return;
       }
     }
@@ -43,6 +44,8 @@ const TicTacToe = () => {
 
   const handleUndo = () => {
     setGame(Array(9).fill(""));
+    setTurn(1);
+    setWinner("");
   };
 
   return (
@@ -61,6 +64,7 @@ const TicTacToe = () => {
           </div>
         ))}
       </div>
+      {winner && <p>Player {winner} won</p>}
     </>
   );
 };
